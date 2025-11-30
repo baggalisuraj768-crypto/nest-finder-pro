@@ -1,14 +1,25 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from "react-helmet-async";
+import Layout from "@/components/layout/Layout";
+import HeroSection from "@/components/home/HeroSection";
+import FeaturedListings from "@/components/home/FeaturedListings";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
+import TopAgents from "@/components/home/TopAgents";
+import CallToAction from "@/components/home/CallToAction";
 
-const Index = () => {
+export default function Index() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>NestFinder - Find Your Perfect Nest | Real Estate in India</title>
+        <meta name="description" content="Discover your dream home with NestFinder. Browse premium properties across Hyderabad, Bangalore, Mumbai, Delhi and more. Apartments, Villas, Houses available." />
+      </Helmet>
+      <Layout>
+        <HeroSection />
+        <FeaturedListings />
+        <WhyChooseUs />
+        <TopAgents />
+        <CallToAction />
+      </Layout>
+    </>
   );
-};
-
-export default Index;
+}
