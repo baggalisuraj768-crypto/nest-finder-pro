@@ -14,7 +14,128 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      agents: {
+        Row: {
+          bio: string
+          created_at: string
+          email: string
+          experience: number
+          id: string
+          image: string
+          listings_count: number
+          name: string
+          phone: string
+          rating: number
+          review_count: number
+          specialization: string[]
+          updated_at: string
+          verified: boolean
+        }
+        Insert: {
+          bio: string
+          created_at?: string
+          email: string
+          experience: number
+          id: string
+          image: string
+          listings_count?: number
+          name: string
+          phone: string
+          rating: number
+          review_count?: number
+          specialization: string[]
+          updated_at?: string
+          verified?: boolean
+        }
+        Update: {
+          bio?: string
+          created_at?: string
+          email?: string
+          experience?: number
+          id?: string
+          image?: string
+          listings_count?: number
+          name?: string
+          phone?: string
+          rating?: number
+          review_count?: number
+          specialization?: string[]
+          updated_at?: string
+          verified?: boolean
+        }
+        Relationships: []
+      }
+      listings: {
+        Row: {
+          address: string
+          agent_id: string
+          area_sqft: number
+          baths: number
+          beds: number
+          city: string
+          created_at: string
+          description: string
+          featured: boolean
+          features: string[]
+          id: string
+          images: string[]
+          lat: number
+          lng: number
+          price: number
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          address: string
+          agent_id: string
+          area_sqft: number
+          baths?: number
+          beds?: number
+          city: string
+          created_at?: string
+          description: string
+          featured?: boolean
+          features: string[]
+          id: string
+          images: string[]
+          lat: number
+          lng: number
+          price: number
+          title: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          agent_id?: string
+          area_sqft?: number
+          baths?: number
+          beds?: number
+          city?: string
+          created_at?: string
+          description?: string
+          featured?: boolean
+          features?: string[]
+          id?: string
+          images?: string[]
+          lat?: number
+          lng?: number
+          price?: number
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listings_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +144,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +271,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const
